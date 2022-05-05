@@ -23,15 +23,14 @@ var moreFruits = function(fruits) {
 // which are multiples of five.
 var multiplesOfFive = function(numbers) {
 
-  var isA5;
+  // var divisivleBy5;
   var howMany5s = 0;
   _.each(numbers, function(value, index, collection) {
     if (value % 5 === 0) {
-      var isA5 = value;
       howMany5s ++;
     }
   });
-  return isA5, howMany5s;
+  return howMany5s;
 };
 
 
@@ -43,24 +42,25 @@ var multiplesOfFive = function(numbers) {
 
 // use _.filter to return the fruits array with only the desired fruit.
 var onlyOneFruit = function(fruits, targetFruit) {
-  _.filter(fruits, function(value) {
+  return _.filter(fruits, function(value) {
     return value === targetFruit;
   });
-  return [targetFruit];
 };
 
 // use _.filter to return the fruits array with only fruits
 // starting with the letter 'P'.
 var startsWith = function(fruits, letter) {
-  // console.log('fruits;', fruits);
-  _.filter(fruits, function(value) {
-    return value.slice(0, 1) === letter;
+  return _.filter(fruits, function(value, index, collection) {
+    return value[0] === letter;
   });
+  return fruits;
 };
 
 // return a filtered array containing only cookie-type desserts.
 var cookiesOnly = function(desserts) {
-
+  return _.filter(desserts, function(dessert, index, collection) {
+    return dessert.type === 'cookie';
+  });
 };
 
 /*
@@ -70,13 +70,29 @@ var cookiesOnly = function(desserts) {
  */
 
 // return the total price of all products.
+// _.reduce(list, iteratee, memo);
 var sumTotal = function(products) {
-
+  console.log('products;', products);
+  return _.reduce(products, function(memo, num) {
+    if (num === 'price') {
+      num = memo + num;
+    }
+  }, 0);
 };
+
 
 // return an object consisting of dessert types and how many of each.
 // exampleOutput: { dessertType: 3, dessertType2: 1 }
 var dessertCategories = function(desserts) {
+  var dessertInfo = {};
+  dessertInfo.desertType1 = 0;
+  dessertInfo.dessertType2 = 0;
+  return _.reduce(desserts, function(memo, num) {
+    dessertInfo.desertType1 + num;
+    dessertInfo.dessertType2 + num;
+    return dessertInfo;
+
+  }, 0);
 
 };
 
